@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Нежная палитра: Клубничный мусс и сливки */
+  --primary: #ff85a1;
+  --primary-hover: #ff5c8d;
+  --secondary: #fbb1bd;
+  --accent: #f9bec7;
+  --background: #fff5f7; /* Очень нежный розовый оттенок фона */
+  --surface: rgba(255, 255, 255, 0.85);
+  --text-main: #5d4146;
+  --text-muted: #9e8287;
+  --border: rgba(255, 182, 193, 0.3);
+  --shadow: rgba(255, 133, 161, 0.15);
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: radial-gradient(circle at top right, #fff5f7, #fef0f0);
+  background-attachment: fixed;
+  color: var(--text-main);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* --- Эффект парящих сердечек на фоне --- */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.heart-1, .heart-2, .heart-3 {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  animation: float 15s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- Контейнер и заголовки --- */
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-family: 'Lora', serif; /* Если подключишь Google Fonts */
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.text-gradient {
+  background: linear-gradient(45deg, var(--primary), #ffafbd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Карточки (Glassmorphism) --- */
+.enhanced-card {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 24px;
+  box-shadow: 0 10px 30px var(--shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.enhanced-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 15px 45px rgba(255, 133, 161, 0.25);
+}
+
+/* Декоративные сердечки по углам карточки */
+.heart-decoration {
+  position: absolute;
+  font-size: 12px;
+  opacity: 0.3;
+}
+.top-left { top: 10px; left: 10px; }
+.top-right { top: 10px; right: 10px; }
+
+/* --- Кнопки --- */
+button {
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  box-shadow: 0 4px 15px var(--shadow);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px var(--shadow);
+  filter: brightness(1.1);
+}
+
+.fab {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px var(--shadow);
+  z-index: 100;
+}
+
+/* --- Поля ввода --- */
+input, textarea, select {
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid transparent !important;
+  border-radius: 18px !important;
+  padding: 14px !important;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  background: white;
+  border-color: var(--secondary) !important;
+  box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.2);
+  outline: none;
+}
+
+/* --- Сетка фотографий --- */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.photo-item {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  border: 3px solid white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.photo-item:hover {
+  transform: rotate(2deg) scale(1.05);
+}
+
+/* --- Splash Screen --- */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.splash-content {
+  text-align: center;
+  color: white;
+  animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
